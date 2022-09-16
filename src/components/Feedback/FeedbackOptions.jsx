@@ -1,28 +1,24 @@
 import PropTypes from 'prop-types';
 import { ButtonFeedbackSection, FeedbackButton } from './Feedback.styled';
 
-export const FeedbackOptions = ({
-  hendleIncrementInGood,
-  hendleIncrementInNeutral,
-  hendleIncrementInBad,
-}) => {
-  return (
-    <ButtonFeedbackSection>
-      <FeedbackButton type="button" onClick={hendleIncrementInGood}>
-        Good
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
+  const objectButton = Object.keys(options).map(btn => {
+    console.log(btn);
+    return (
+      <FeedbackButton
+        type="button"
+        key={btn}
+        onClick={() => onLeaveFeedback(btn)}
+      >
+        {btn}
       </FeedbackButton>
-      <FeedbackButton type="button" onClick={hendleIncrementInNeutral}>
-        Neutral
-      </FeedbackButton>
-      <FeedbackButton type="button" onClick={hendleIncrementInBad}>
-        Bad
-      </FeedbackButton>
-    </ButtonFeedbackSection>
-  );
+    );
+  });
+
+  return <ButtonFeedbackSection>{objectButton}</ButtonFeedbackSection>;
 };
 
 FeedbackOptions.propTypes = {
-  hendleIncrementInGood: PropTypes.func,
-  hendleIncrementInNeutral: PropTypes.func,
-  hendleIncrementInBad: PropTypes.func,
+  onLeaveFeedback: PropTypes.func,
+  options: PropTypes.object,
 };

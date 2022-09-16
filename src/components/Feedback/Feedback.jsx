@@ -10,26 +10,10 @@ class App extends React.Component {
     bad: 0,
   };
 
-  hendleIncrementInGood = () => {
+  hendleIncrement = key => {
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
-      };
-    });
-  };
-
-  hendleIncrementInNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-
-  hendleIncrementInBad = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
+        [key]: prevState[key] + 1,
       };
     });
   };
@@ -51,9 +35,8 @@ class App extends React.Component {
       <>
         <Section title={'Please leave feedback'}>
           <FeedbackOptions
-            hendleIncrementInGood={this.hendleIncrementInGood}
-            hendleIncrementInNeutral={this.hendleIncrementInNeutral}
-            hendleIncrementInBad={this.hendleIncrementInBad}
+            options={this.state}
+            onLeaveFeedback={this.hendleIncrement}
           />
         </Section>
         <Section title={'Statistics'}>
