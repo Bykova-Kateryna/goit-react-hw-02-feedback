@@ -3,6 +3,7 @@ import { Section } from './Section';
 import { FeedbackOptions } from './FeedbackOptions';
 import { Statistics } from './Statistics';
 import { Notification } from './Notification';
+
 class App extends React.Component {
   state = {
     good: 0,
@@ -18,14 +19,19 @@ class App extends React.Component {
     });
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  ourButton = () => {
+    return Object.keys(this.state);
   };
+
   countPositiveFeedbackPercentage = () => {
     if (this.state.good === 0) {
       return 0;
     } else {
-      return Math.floor((this.state.good / this.countTotalFeedback()) * 100);
+      return Math.floor(
+        (this.state.good /
+          (this.state.good + this.state.neutral + this.state.bad)) *
+          100
+      );
     }
   };
 
@@ -35,7 +41,7 @@ class App extends React.Component {
       <>
         <Section title={'Please leave feedback'}>
           <FeedbackOptions
-            options={this.state}
+            options={this.ourButton()}
             onLeaveFeedback={this.hendleIncrement}
           />
         </Section>
@@ -47,7 +53,7 @@ class App extends React.Component {
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
-              countTotalFeedback={this.countTotalFeedback()}
+              totalFeedback={total}
               countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
             />
           )}

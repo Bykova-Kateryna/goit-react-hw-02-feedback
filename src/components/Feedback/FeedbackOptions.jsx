@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { ButtonFeedbackSection, FeedbackButton } from './Feedback.styled';
 
 export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
-  const objectButton = Object.keys(options).map(btn => {
-    console.log(btn);
+  const objectButton = options.map(btn => {
     return (
       <FeedbackButton
         type="button"
@@ -19,6 +18,6 @@ export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
 };
 
 FeedbackOptions.propTypes = {
-  onLeaveFeedback: PropTypes.func,
-  options: PropTypes.object,
+  onLeaveFeedback: PropTypes.elementType.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

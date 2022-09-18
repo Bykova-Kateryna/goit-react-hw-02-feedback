@@ -5,7 +5,7 @@ export const Statistics = ({
   good,
   neutral,
   bad,
-  countTotalFeedback,
+  totalFeedback,
   countPositiveFeedbackPercentage,
 }) => {
   return (
@@ -20,7 +20,7 @@ export const Statistics = ({
         <p></p>Bad: {bad}
       </StatisticsItem>
       <StatisticsItem>
-        <p></p>Total: {countTotalFeedback}
+        <p></p>Total: {totalFeedback}
       </StatisticsItem>
       <StatisticsItem>
         <p></p>Positive feedback: {countPositiveFeedbackPercentage}%
@@ -30,12 +30,9 @@ export const Statistics = ({
 };
 
 Statistics.propTypes = {
-  good: PropTypes.number,
-  neutral: PropTypes.number,
-  bad: PropTypes.number,
-  countTotalFeedback: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
-  countPositiveFeedbackPercentage: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.number,
-  ]),
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  totalFeedback: PropTypes.number.isRequired,
+  countPositiveFeedbackPercentage: PropTypes.number.isRequired,
 };
